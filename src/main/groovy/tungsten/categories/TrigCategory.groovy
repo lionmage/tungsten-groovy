@@ -58,4 +58,11 @@ class TrigCategory {
         RealType converted = new RealImpl(BigDecimal.valueOf(operand.doubleValue()), false)
         return self.subtract(new AngularDegrees(converted))
     }
+    // enhancement of String
+    static def asType(String self, Class clazz) {
+        if (clazz == AngularDegrees) {
+            return new AngularDegrees(self)
+        }
+        return self.asType(clazz) // delegate to normal String behavior
+    }
 }
