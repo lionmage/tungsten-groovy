@@ -23,6 +23,7 @@
  */
 package tungsten.categories
 
+import org.codehaus.groovy.runtime.StringGroovyMethods
 import tungsten.types.numerics.RealType
 import tungsten.types.numerics.impl.RealImpl
 import tungsten.types.util.AngularDegrees
@@ -40,6 +41,13 @@ class TrigCategory {
     }
     static def minus(AngularDegrees self, BigDecimal operand) {
         return self.subtract(new AngularDegrees(new RealImpl(operand)))
+    }
+    static def asType(BigDecimal self, Class clazz) {
+        final def conversion = BigDecimal.&asType
+        if (clazz == AngularDegrees) {
+            return new AngularDegrees(new RealImpl(self))
+        }
+        return conversion(self, clazz)
     }
     // enhancement of Number
     static def plus(Number self, AngularDegrees operand) {
@@ -60,9 +68,19 @@ class TrigCategory {
     }
     // enhancement of String
     static def asType(String self, Class clazz) {
+        final def conversion = StringGroovyMethods.&asType
         if (clazz == AngularDegrees) {
             return new AngularDegrees(self)
         }
-        return self.asType(clazz) // delegate to normal String behavior
+        return conversion(self, clazz) // delegate to normal String behavior
+    }
+    // enhancement of RealType
+    static def asType(RealType self, Class clazz) {
+        final def conversion = RealType.&asType
+        if (clazz == AngularDegrees) {
+            // treat it as a decimal degrees value
+            return new AngularDegrees(self)
+        }
+        return conversion(self, clazz)
     }
 }
