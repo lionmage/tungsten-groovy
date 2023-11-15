@@ -66,6 +66,14 @@ class TrigCategory {
         RealType converted = new RealImpl(BigDecimal.valueOf(operand.doubleValue()), false)
         return self.subtract(new AngularDegrees(converted))
     }
+    static def asType(Number self, Class clazz) {
+        final def conversion = Number.&asType
+        if (clazz == AngularDegrees) {
+            RealType converted = new RealImpl(BigDecimal.valueOf(self.doubleValue()), false)
+            return new AngularDegrees(converted)
+        }
+        return conversion(self, clazz)
+    }
     // enhancement of String
     static def asType(String self, Class clazz) {
         final def conversion = StringGroovyMethods.&asType
