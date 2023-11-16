@@ -48,8 +48,8 @@ class TungstenBaseCategory {
     }
     static def power(BigDecimal self, Numeric operand) {
         if (operand instanceof IntegerType) {
-            int exponent = ((IntegerType) operand).asBigInteger().intValueExact();
-            return new RealImpl(self.pow(exponent), MathContext.DECIMAL128);
+            int exponent = ((IntegerType) operand).asBigInteger().intValueExact()
+            return new RealImpl(self.pow(exponent), MathContext.DECIMAL128)
         }
         return MathUtils.generalizedExponent(new RealImpl(self), operand, operand.getMathContext())
     }
@@ -71,10 +71,31 @@ class TungstenBaseCategory {
     }
     static def power(BigInteger self, Numeric operand) {
         if (operand instanceof IntegerType) {
-            int exponent = ((IntegerType) operand).asBigInteger().intValueExact();
-            return new IntegerImpl(self.pow(exponent));
+            int exponent = ((IntegerType) operand).asBigInteger().intValueExact()
+            return new IntegerImpl(self.pow(exponent))
         }
         RealType upconverted = new RealImpl(new BigDecimal(self))
         return MathUtils.generalizedExponent(upconverted, operand, operand.getMathContext())
+    }
+    // enhancing MathContext
+    static def plus(MathContext self, Number operand) {
+        return new MathContext(self.precision + operand.intValue(), self.roundingMode)
+    }
+    static def minus(MathContext self, Number operand) {
+        return new MathContext(self.precision - operand.intValue(), self.roundingMode)
+    }
+    static def next(MathContext self) {
+        return new MathContext(self.precision + 1, self.roundingMode)
+    }
+    static def previous(MathContext self) {
+        return new MathContext(self.precision - 1, self.roundingMode)
+    }
+    static def plus(MathContext self, IntegerType operand) {
+        int increment = operand.asBigInteger().intValueExact()
+        return new MathContext(self.precision + increment, self.roundingMode)
+    }
+    static def minus(MathContext self, IntegerType operand) {
+        int decrement = operand.asBigInteger().intValueExact()
+        return new MathContext(self.precision - decrement, self.roundingMode)
     }
 }
