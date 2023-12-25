@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     implementation 'org.apache.groovy:groovy:4.0.14'
-    implementation name: 'tungsten-types', version: '0.2'
+    implementation group: 'tungsten', name: 'tungsten-types', version: '0.3'
     testImplementation platform('org.junit:junit-bom:5.9.2')
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
 }
