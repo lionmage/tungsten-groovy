@@ -43,3 +43,10 @@ Matrix<ComplexType> asin = MathUtils.arcsin(result)
 println()
 println "Arcsin calculated as:"
 println UnicodeTextEffects.formatMatrixForDisplay(asin, null, null)
+
+// sinOfArcsin should be essentially identical with result (above)
+Matrix<ComplexType> sinOfArcsin = MathUtils.sin(asin)
+
+println()
+println("Sin of arcsin value:")
+println UnicodeTextEffects.formatMatrixForDisplay(sinOfArcsin, null, null)
