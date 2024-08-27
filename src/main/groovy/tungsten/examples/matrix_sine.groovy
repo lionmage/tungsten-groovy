@@ -48,5 +48,5 @@ println UnicodeTextEffects.formatMatrixForDisplay(asin, null, null)
 Matrix<ComplexType> sinOfArcsin = MathUtils.sin(asin)
 
 println()
-println("Sin of arcsin value:")
+println "Sin of arcsin value:"
 println UnicodeTextEffects.formatMatrixForDisplay(sinOfArcsin, null, null)
