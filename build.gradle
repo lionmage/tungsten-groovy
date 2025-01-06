@@ -7,14 +7,22 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    flatDir {
-        dirs 'localLibs'
+//    flatDir {
+//        dirs 'localLibs'
+//    }
+    maven {
+        url = uri("https://maven.pkg.github.com/lionmage/tungsten-types")
+        // for a public repo, reading should not require credentials
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+            password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+        }
     }
 }
 
 dependencies {
     implementation 'org.apache.groovy:groovy:4.0.14'
-    implementation(group: 'tungsten', name: 'tungsten-types', version: '0.3')
+    implementation(group: 'tungsten', name: 'tungsten-types', version: '0.5')
     testImplementation platform('org.junit:junit-bom:5.9.2')
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
 }
