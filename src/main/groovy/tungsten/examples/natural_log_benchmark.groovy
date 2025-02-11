@@ -22,3 +22,9 @@ begin = System.currentTimeMillis()
 println MathUtils.ln(fiftyGrandInt, MathContext.DECIMAL64)
 end = System.currentTimeMillis()
 println "Time elapsed: " + (end - begin) + "\u2009ms"
+
+println "Computing ln with integer argument (second time)"
+begin = System.currentTimeMillis()
+println MathUtils.ln(fiftyGrandInt, MathContext.DECIMAL64)
+end = System.currentTimeMillis()
+println "Time elapsed: " + (end - begin) + "\u2009ms"
