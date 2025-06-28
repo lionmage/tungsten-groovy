@@ -28,48 +28,50 @@ import tungsten.types.numerics.RealType
 import tungsten.types.numerics.impl.RealImpl
 import tungsten.types.util.AngularDegrees
 
+import java.math.MathContext
+
 class TrigCategory {
     // enhancing BigDecimal
     static def plus(BigDecimal self, AngularDegrees operand) {
-        return new AngularDegrees(new RealImpl(self)).add(operand)
+        return new AngularDegrees(new RealImpl(self, MathContext.DECIMAL32)).add(operand)
     }
     static def minus(BigDecimal self, AngularDegrees operand) {
-        return new AngularDegrees(new RealImpl(self)).subtract(operand)
+        return new AngularDegrees(new RealImpl(self, MathContext.DECIMAL32)).subtract(operand)
     }
     static def plus(AngularDegrees self, BigDecimal operand) {
-        return self.add(new AngularDegrees(new RealImpl(operand)))
+        return self.add(new AngularDegrees(new RealImpl(operand, MathContext.DECIMAL32)))
     }
     static def minus(AngularDegrees self, BigDecimal operand) {
-        return self.subtract(new AngularDegrees(new RealImpl(operand)))
+        return self.subtract(new AngularDegrees(new RealImpl(operand, MathContext.DECIMAL32)))
     }
     static def asType(BigDecimal self, Class clazz) {
         final def conversion = BigDecimal.&asType
         if (clazz == AngularDegrees) {
-            return new AngularDegrees(new RealImpl(self))
+            return new AngularDegrees(new RealImpl(self, MathContext.DECIMAL32))
         }
         return conversion(self, clazz)
     }
     // enhancement of Number
     static def plus(Number self, AngularDegrees operand) {
-        RealType converted = new RealImpl(BigDecimal.valueOf(self.doubleValue()), false)
+        RealType converted = new RealImpl(BigDecimal.valueOf(self.doubleValue()), MathContext.DECIMAL32, false)
         return new AngularDegrees(converted).add(operand)
     }
     static def plus(AngularDegrees self, Number operand) {
-        RealType converted = new RealImpl(BigDecimal.valueOf(operand.doubleValue()), false)
+        RealType converted = new RealImpl(BigDecimal.valueOf(operand.doubleValue()), MathContext.DECIMAL32, false)
         return self.add(new AngularDegrees(converted))
     }
     static def minus(Number self, AngularDegrees operand) {
-        RealType converted = new RealImpl(BigDecimal.valueOf(self.doubleValue()), false)
+        RealType converted = new RealImpl(BigDecimal.valueOf(self.doubleValue()), MathContext.DECIMAL32, false)
         return new AngularDegrees(converted).subtract(operand)
     }
     static def minus(AngularDegrees self, Number operand) {
-        RealType converted = new RealImpl(BigDecimal.valueOf(operand.doubleValue()), false)
+        RealType converted = new RealImpl(BigDecimal.valueOf(operand.doubleValue()), MathContext.DECIMAL32, false)
         return self.subtract(new AngularDegrees(converted))
     }
     static def asType(Number self, Class clazz) {
         final def conversion = Number.&asType
         if (clazz == AngularDegrees) {
-            RealType converted = new RealImpl(BigDecimal.valueOf(self.doubleValue()), false)
+            RealType converted = new RealImpl(BigDecimal.valueOf(self.doubleValue()), MathContext.DECIMAL32, false)
             return new AngularDegrees(converted)
         }
         return conversion(self, clazz)
