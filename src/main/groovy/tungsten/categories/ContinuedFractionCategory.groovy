@@ -6,7 +6,7 @@ import tungsten.types.numerics.impl.RealImpl
 
 class ContinuedFractionCategory {
     static def asType(List self, Class clazz) {
-        final  def conversion = List.&asType
+        final def conversion = List.&asType
         if (clazz == ContinuedFraction) {
             def longList = []
             for (def element : self) {
@@ -72,6 +72,7 @@ class ContinuedFractionCategory {
     /*
      Enhancements to ContinuedFraction
      */
+
     static def plus(ContinuedFraction self, Number operand) {
         if (operand instanceof Integer || operand instanceof Long || operand instanceof BigInteger) {
             ContinuedFraction converted = new ContinuedFraction(List.of(operand.toLong()))
