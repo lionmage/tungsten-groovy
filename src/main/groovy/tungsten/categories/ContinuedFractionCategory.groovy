@@ -68,4 +68,47 @@ class ContinuedFractionCategory {
         ContinuedFraction cf = new ContinuedFraction(new RealImpl(decConverted, operand.getMathContext(), false))
         return cf.divide(operand)
     }
+
+    /*
+     Enhancements to ContinuedFraction
+     */
+    static def plus(ContinuedFraction self, Number operand) {
+        if (operand instanceof Integer || operand instanceof Long || operand instanceof BigInteger) {
+            ContinuedFraction converted = new ContinuedFraction(List.of(operand.toLong()))
+            return self.add(converted)
+        }
+        def decConverted = operand.toBigDecimal()
+        ContinuedFraction cf = new ContinuedFraction(new RealImpl(decConverted, self.getMathContext(), false))
+        return self.add(cf)
+    }
+
+    static def minus(ContinuedFraction self, Number operand) {
+        if (operand instanceof Integer || operand instanceof Long || operand instanceof BigInteger) {
+            ContinuedFraction converted = new ContinuedFraction(List.of(operand.toLong()))
+            return self.subtract(converted)
+        }
+        def decConverted = operand.toBigDecimal()
+        ContinuedFraction cf = new ContinuedFraction(new RealImpl(decConverted, self.getMathContext(), false))
+        return self.subtract(cf)
+    }
+
+    static def multiply(ContinuedFraction self, Number operand) {
+        if (operand instanceof Integer || operand instanceof Long || operand instanceof BigInteger) {
+            ContinuedFraction converted = new ContinuedFraction(List.of(operand.toLong()))
+            return self.multiply(converted)
+        }
+        def decConverted = operand.toBigDecimal()
+        ContinuedFraction cf = new ContinuedFraction(new RealImpl(decConverted, self.getMathContext(), false))
+        return self.multiply(cf)
+    }
+
+    static def div(ContinuedFraction self, Number operand) {
+        if (operand instanceof Integer || operand instanceof Long || operand instanceof BigInteger) {
+            ContinuedFraction converted = new ContinuedFraction(List.of(operand.toLong()))
+            return self.divide(converted)
+        }
+        def decConverted = operand.toBigDecimal()
+        ContinuedFraction cf = new ContinuedFraction(new RealImpl(decConverted, self.getMathContext(), false))
+        return self.divide(cf)
+    }
 }
