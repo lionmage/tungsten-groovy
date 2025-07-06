@@ -69,7 +69,7 @@ class ContinuedFractionCategory {
 
     static def plus(Number self, ContinuedFraction operand) {
         if (self instanceof Integer || self instanceof Long || self instanceof BigInteger) {
-            ContinuedFraction converted = new ContinuedFraction(List.of(self.toLong()))
+            ContinuedFraction converted = new ContinuedFraction(self.toLong())
             return converted.add(operand)
         }
         def decConverted = self.toBigDecimal()
@@ -79,7 +79,7 @@ class ContinuedFractionCategory {
 
     static def minus(Number self, ContinuedFraction operand) {
         if (self instanceof Integer || self instanceof Long || self instanceof BigInteger) {
-            ContinuedFraction converted = new ContinuedFraction(List.of(self.toLong()))
+            ContinuedFraction converted = new ContinuedFraction(self.toLong())
             return converted.subtract(operand)
         }
         def decConverted = self.toBigDecimal()
@@ -89,7 +89,7 @@ class ContinuedFractionCategory {
 
     static def multiply(Number self, ContinuedFraction operand) {
         if (self instanceof Integer || self instanceof Long || self instanceof BigInteger) {
-            ContinuedFraction converted = new ContinuedFraction(List.of(self.toLong()))
+            ContinuedFraction converted = new ContinuedFraction(self.toLong())
             return converted.multiply(operand)
         }
         def decConverted = self.toBigDecimal()
@@ -99,7 +99,7 @@ class ContinuedFractionCategory {
 
     static def div(Number self, ContinuedFraction operand) {
         if (self instanceof Integer || self instanceof Long || self instanceof BigInteger) {
-            ContinuedFraction converted = new ContinuedFraction(List.of(self.toLong()))
+            ContinuedFraction converted = new ContinuedFraction(self.toLong())
             return converted.divide(operand)
         }
         def decConverted = self.toBigDecimal()
@@ -113,7 +113,7 @@ class ContinuedFractionCategory {
 
     static def plus(ContinuedFraction self, Number operand) {
         if (operand instanceof Integer || operand instanceof Long || operand instanceof BigInteger) {
-            ContinuedFraction converted = new ContinuedFraction(List.of(operand.toLong()))
+            ContinuedFraction converted = new ContinuedFraction(operand.toLong())
             return self.add(converted)
         }
         def decConverted = operand.toBigDecimal()
@@ -123,7 +123,7 @@ class ContinuedFractionCategory {
 
     static def minus(ContinuedFraction self, Number operand) {
         if (operand instanceof Integer || operand instanceof Long || operand instanceof BigInteger) {
-            ContinuedFraction converted = new ContinuedFraction(List.of(operand.toLong()))
+            ContinuedFraction converted = new ContinuedFraction(operand.toLong())
             return self.subtract(converted)
         }
         def decConverted = operand.toBigDecimal()
@@ -133,7 +133,7 @@ class ContinuedFractionCategory {
 
     static def multiply(ContinuedFraction self, Number operand) {
         if (operand instanceof Integer || operand instanceof Long || operand instanceof BigInteger) {
-            ContinuedFraction converted = new ContinuedFraction(List.of(operand.toLong()))
+            ContinuedFraction converted = new ContinuedFraction(operand.toLong())
             return self.multiply(converted)
         }
         def decConverted = operand.toBigDecimal()
@@ -143,7 +143,7 @@ class ContinuedFractionCategory {
 
     static def div(ContinuedFraction self, Number operand) {
         if (operand instanceof Integer || operand instanceof Long || operand instanceof BigInteger) {
-            ContinuedFraction converted = new ContinuedFraction(List.of(operand.toLong()))
+            ContinuedFraction converted = new ContinuedFraction(operand.toLong())
             return self.divide(converted)
         }
         def decConverted = operand.toBigDecimal()
