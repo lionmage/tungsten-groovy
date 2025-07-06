@@ -50,6 +50,19 @@ class ContinuedFractionCategory {
         return conversion(self, clazz)
     }
 
+    static def asType(ContinuedFraction self, Class clazz) {
+        final def conversion = ContinuedFraction.&asType
+        if (clazz == List) {
+            if (self.terms() < 0L) throw new IllegalArgumentException("Continued fraction does not terminate")
+            def result = []
+            for (Long term : self) {
+                result << term
+            }
+            return result
+        }
+        return conversion(self, clazz)
+    }
+
     /*
      Enhancements for Number
      */
