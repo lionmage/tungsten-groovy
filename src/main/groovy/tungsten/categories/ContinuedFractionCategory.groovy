@@ -150,4 +150,16 @@ class ContinuedFractionCategory {
         ContinuedFraction cf = new ContinuedFraction(new RealImpl(decConverted, self.getMathContext(), false))
         return self.divide(cf)
     }
+
+    static def leftShift(ContinuedFraction self, List operand) {
+        def longList = []
+        for (def element : operand) {
+            longList << element as Long
+        }
+        return self.concat(longList)
+    }
+
+    static def leftShift(ContinuedFraction self, ContinuedFraction operand) {
+        return self.concat(operand)
+    }
 }
